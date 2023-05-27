@@ -9,17 +9,9 @@ const UserSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
-    country: {
+    token: {
       type: String,
-    },
-    img: {
-      type: String,
-    },
-    city: {
-      type: String,
-    },
-    phone: {
-      type: String,
+      default: null,
     },
     password: {
       type: String,

@@ -9,6 +9,7 @@ const PORT = process.env.port || 3500
 var cors = require('cors')
 const authRouter = require('./Routers/auth')
 const homeRouter = require('./Routers/home')
+const urlRouter = require('./Routers/url')
 var nodemailer = require('nodemailer')
 app.use(cors())
 
@@ -20,4 +21,5 @@ app.use(express.json())
 
 app.use('/auth', authRouter)
 app.use('/auth', homeRouter)
+app.use('/auth', urlRouter)
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`))

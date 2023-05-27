@@ -10,7 +10,7 @@ const { findOne } = require('moongose/models/post_model')
 
 const register = async (req, res) => {
   try {
-    const { email_id, pwd } = req.body
+    const { username, email_id, pwd } = req.body
     if (!email_id || !pwd)
       return res.status(400).send({ message: 'email or password required' })
     //duplicated email
@@ -19,9 +19,16 @@ const register = async (req, res) => {
 
     const hashpwd = await bcrypt.hash(pwd, 10)
     const result = await User.create({
+      username: username,
       email: email_id,
       password: hashpwd,
     })
+    const token = jwt.sign(
+      { id: user._id, isAdmin: user.isAdmin },
+      process.env.jwt,
+    )
+    result.token = token
+    result.save()
     res.send({ message: `user created ` })
   } catch (err) {
     console.log(err)
@@ -42,6 +49,7 @@ const login = async (req, res) => {
       { id: user._id, isAdmin: user.isAdmin },
       process.env.jwt,
     )
+
     const { password, isAdmin, ...otherDetails } = user._doc
     res
       .cookie('access_token', token, {
