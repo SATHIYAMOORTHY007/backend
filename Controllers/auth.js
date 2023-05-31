@@ -27,8 +27,7 @@ const register = async (req, res) => {
       { id: user._id, isAdmin: user.isAdmin },
       process.env.jwt,
     )
-    result.token = token
-    result.save()
+
     res.send({ message: `user created ` })
   } catch (err) {
     console.log(err)
@@ -58,6 +57,7 @@ const login = async (req, res) => {
       .json({ details: { ...otherDetails }, isAdmin, password })
   } catch (err) {
     console.log(err)
+    res.json(err)
   }
 }
 

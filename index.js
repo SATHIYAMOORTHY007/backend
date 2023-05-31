@@ -11,6 +11,7 @@ const authRouter = require('./Routers/auth')
 const homeRouter = require('./Routers/home')
 const urlRouter = require('./Routers/url')
 var nodemailer = require('nodemailer')
+
 app.use(cors())
 
 connectDB()

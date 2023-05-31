@@ -18,15 +18,7 @@ const urlCreate = async (req, res) => {
 }
 
 const getAll = async (req, res) => {
-  const data = await urlModel.aggregate[
-    {
-      $match: {
-        created_at: {
-          $gt: new Date(ISODate().getTime() - 1000 * 60 * 60 * 24 * 30),
-        },
-      },
-    }
-  ]
+  const data = await urlModel.find()
   res.send(data)
 }
 module.exports = { urlCreate, getAll }
