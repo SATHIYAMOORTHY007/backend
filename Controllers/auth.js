@@ -51,10 +51,10 @@ const login = async (req, res) => {
 
     const { password, isAdmin, ...otherDetails } = user._doc
     res
-      .cookie('access_token', token, {
+      .cookie('Access_token', token, {
         httpOnly: true,
       })
-      .json({ details: { ...otherDetails }, isAdmin, password })
+      .json({ details: { ...otherDetails },token, isAdmin, password })
   } catch (err) {
     console.log(err)
     res.json(err)
