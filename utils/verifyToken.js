@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken')
 
 const verifyToken = (req, res, next) => {
   try {
-    console.log(req.headers)
+    console.log(req.headers.access_token)
     const token = req.headers.access_token
 
     if (!token) {
