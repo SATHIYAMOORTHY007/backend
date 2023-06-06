@@ -4,7 +4,6 @@ const randomGenerator = require('../utils/randomgen')
 const urlCreate = async (req, res) => {
   const { longurl } = req.body
   shorturl = randomGenerator()
-
   try {
     const result = await urlModel.create({
       longUrl: longurl,
