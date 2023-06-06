@@ -9,7 +9,8 @@ const verifyToken = (req, res, next) => {
       return next(next(res.status(401)))
     }
 
-    jwt.verify(token, process.env.JWT, (err, user) => {
+    jwt.verify(token, process.env.jwt, (err, user) => {
+      console.log(err)
       if (err) return next(next(res.status(401)))
       req.user = user
       next()
